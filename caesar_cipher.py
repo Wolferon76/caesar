@@ -1,38 +1,41 @@
-a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-def e(t, o):
-  r = ""
-  for c in t:
-    if (a.find(c) == -1):
-      r += c
+
+def encryption(text, o):
+  rotation = ""
+  # tell about the number of letter in text
+  for letter_number in text:
+    if (Alphabet.find(letter_number) == -1):
+      rotation += letter_number
+      # difirent situation with the number of letter in text
     else:
-      r += (a[(a.find(c) + o) % len(a)])
-  return r
+      rotation += (Alphabet[(Alphabet.find(letter_number) + o) % len(Alphabet)])
+  return rotation
 
-def d(t, o):
-  r = ""
-  for c in t:
-    if (a.find(c) == -1):
-      r += c
+def decryption(text, o):
+  rotation = ""
+  for letter_number in text:
+    if (Alphabet.find(letter_number) == -1):
+      rotation += letter_number
     else:
-      r += (a[(a.find(c) - o) % len(a)])
-  return r
+      rotation += (Alphabet[(Alphabet.find(letter_number) - o) % len(Alphabet)])
+  return rotation
 
-w = """
+word = """
 1. Encrypt text
 2. Decrypt text
 3. Bruteforce all rotations
 Choose mode: """
-mode = int(input(w))
+mode = int(input(word))
 
 if mode == 1:
   text = input("Enter the text: ")
   rotation = int(input("Enter the rotation: "))
-  print("Encrypted: " + e(text, rotation))
+  print("Encrypted: " + encryption(text, rotation))
 elif mode == 2:
   text = input("Enter the text: ")
   rotation = int(input("Enter the rotation: "))
-  print("Decrypted: " + d(text, rotation))
+  print("Decrypted: " + decryption(text, rotation))
 elif mode == 3:
   print("Bruteforcing...")
   print("But I don't know how to do it, sorry ¯\_(ツ)_/¯")
